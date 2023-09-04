@@ -1,0 +1,128 @@
+$base_color: #1c2329;
+$base_disabled_color: lighten($base_color, 8%);
+$base_actived_forecolor: #2c6b53;
+$base_actived_color: #6fcca9;
+
+.power_status {
+  color: #000;
+  text-align: center;
+}
+
+.power_button {
+  $size: 130px;
+  
+  width: $size;
+  height: $size;
+  
+  border: 0;
+  border-radius: 50%;
+  background-color: $base_color;
+  
+  &:hover {
+    cursor: pointer;
+  }
+  
+  &:focus {
+    outline: none;
+  }
+}
+
+%icon_circle {
+  content: "";
+  
+ 	position: absolute;
+  left: 50%;
+  top: 50%;
+  
+  width: 50px;
+  height: 50px;
+  margin: -25px 0 0 -25px;
+  
+  background: $base_disabled_color;
+  border-radius: inherit;
+}
+
+%icon_background {
+  content: "";
+  
+ 	position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 2;
+  
+  width: 40px;
+  height: 40px;
+  margin: -20px 0 0 -20px;
+  
+  background: $base_color;
+  border-radius: inherit;
+}
+
+%arrow {
+  content: "";
+  
+  position: absolute;
+  left: 50%;
+  
+  width: 6px;
+  height: 25px;
+  margin-left: -3px;
+  
+  background: $base_disabled_color;
+  border-radius: 10px;
+}
+
+%arrow_background {
+  position: absolute;
+  top: 35px;
+  left: 50%;
+  z-index: 3;
+  
+ 	display: block;
+  width: 20px;
+  height: 20px;
+  margin-left: -10px;
+  
+  background: $base_color;
+}
+
+
+.power_button__icon {
+  position: relative;
+  
+  display: block;
+  width: 100%;
+  height: 100%;
+  
+  border-radius: inherit;
+  
+  &:before {
+    @extend %icon_background;  
+  }
+  
+  &:after {
+    @extend %icon_circle;  
+  }
+}
+
+
+.power_button__icon__arrow {
+  @extend %arrow_background;
+  
+  &:before {
+    @extend %arrow;  
+  }
+}
+
+.power_button.is-active {
+  background-color: $base_actived_color;
+  .power_button__icon:after,
+  .power_button__icon__arrow:before {
+    background: $base_actived_forecolor;
+  }
+  .power_button__icon:before,
+  .power_button__icon__arrow
+   {
+    background-color : $base_actived_color;
+  }
+}
